@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44841f68-f9eb-4fa7-ad52-5bcff55b5080" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/list_detailedLatency_py.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/list_detailedLatency_py.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/list_latency_py.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/list_latency_py.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/list_throughput_py.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/list_throughput_py.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/list_txCompeltion_py.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/list_txCompeltion_py.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,12 +66,14 @@
           <entry key="html" value="13" />
           <entry key="json" value="3" />
           <entry key="py" value="1" />
+          <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="13" />
           <entry key="JSON" value="3" />
+          <entry key="PLAIN_TEXT" value="2" />
           <entry key="Python" value="1" />
         </counts>
       </usages-collector>
@@ -94,11 +95,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/experiment.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="77" column="55" lean-forward="true" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/readme.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="5" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -217,7 +227,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="24" />
     <option name="y" value="51" />
     <option name="width" value="1752" />
@@ -373,9 +383,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25788197" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25788197" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -388,7 +398,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.5004042" side_tool="true" visible="true" weight="0.3285968" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5004042" side_tool="true" visible="true" weight="0.3285968" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32978722" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32978722" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -541,6 +551,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="77" column="55" lean-forward="true" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="5" selection-end-column="80" />
         </state>
       </provider>
     </entry>
