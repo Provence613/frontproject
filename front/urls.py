@@ -21,4 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('deal/',views.deal),
     path('experiment/',views.experiment),
+    path('throughput/',views.throughput),
+    path('latency/',views.latency),
+    path('detailedLatency/',views.detailedLatency),
+    path('txCompletion/',views.txCompletion),
 ]

@@ -8,6 +8,14 @@ import json
 # 将请求定位到index.html文件中
 def experiment(request):
     return render(request, 'experiment_py.html')
+def throughput(request):
+    return render(request, 'list_throughput_py.html')
+def latency(request):
+    return render(request, 'list_latency_py.html')
+def detailedLatency(request):
+    return render(request, 'list_detailedLatency_py.html')
+def txCompletion(request):
+    return render(request, 'list_txCompeltion_py.html')
 def deal(request):
     difficulty = [];
     blockgaslimit =[];
@@ -34,7 +42,7 @@ def deal(request):
     # 可运行cmd命令
     # a=os.system(r"python d:\helloworld.py")
     if os.path.exists("static/json/report.json"):
-        return render(request,'list_throughput.html')
+        return render(request,'list_throughput_py.html')
     else:
         return render(request, 'load.html')
 
