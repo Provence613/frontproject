@@ -41,7 +41,7 @@ def deal(request):
     file.close()
     # 可运行cmd命令
     # a=os.system(r"python d:\helloworld.py")
-    if os.path.exists("static/json/report.json"):
+    if os.path.exists("static/json/report3.json"):
         return render(request,'list_throughput_py.html')
     else:
         return render(request, 'load.html')

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../static/styles/extras.1.1.0.min.css">
     <script type="text/javascript" src="../static/scripts/jquery.min.js"></script>
     <script type="text/javascript" src="../static/scripts/ichart.1.2.1.min.js"></script>
-    <script type="text/javascript">  
+<script type="text/javascript">
       var alllabels=[]
       var allvalues=[]
       var difficulty=[]
@@ -24,7 +24,7 @@
       $.getJSON( "../static/json/report.json", function( data ) {
     	m=data['blockGasLimit'].length;
     	n=data['difficulty'].length;
-    	num=data['nodeCount'];
+    	num=m*n;
     	for(var i=0;i<n;i++){
     		difficulty.push(data['difficulty'][i])
     	}
@@ -36,7 +36,7 @@
     		var labels=[]
     		var values=[]
     		for(var j = 0; j < throughput.length; j++) {
-    			labels.push(throughput[j][0])
+    			labels.push(throughput[j][0]+'tps')
     			values.push(throughput[j][1])
     		}
     		alllabels.push(labels);
@@ -65,11 +65,11 @@
     				         		line_width:2
     				         	}
     				         ];
-    				
+
     				var chart = new iChart.LineBasic2D({
     					render : 'canvasDiv'+(i*n+j),
     					data: data,
-    					width : 400,
+    					width : 500,
     					height : 400,
     					background_color:'#FEFEFE',
     					tip:{
@@ -105,14 +105,14 @@
     							width:1
     						},
     						scale:[{
-    							 position:'left',	
+    							 position:'left',
     							 start_scale:0,
-    							 end_scale:100,
-    							 scale_space:50,
+    							 end_scale:Math.max(allvalues[i*n+j]),
+    							 scale_space:Math.max(allvalues[i*n+j])/10,
     							 scale_size:2,
     							 scale_color:'#9f9f9f'
     						},{
-    							 position:'bottom',	
+    							 position:'bottom',
     							 labels:alllabels[i*n+j]
     						}]
     					}
@@ -132,15 +132,15 @@
     						.textFont('600 11px Times New Roman')
     						.fillText('Throughput',x-40,y-12,false,'#9d987a')
     						.textBaseline('top')
-    						.fillText('Frequency',x+w+12,y+h+10,false,'#9d987a');
-    						
+    						.fillText('Frequency',x+w+22,y+h+10,false,'#9d987a');
+
     					}
     			}));
     			//开始画图
     			chart.draw();}}
     		});
-    		
-    </script>  
+
+    </script>
   </head>
   <body class="h-100">
 

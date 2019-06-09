@@ -13,10 +13,11 @@
     <link rel="stylesheet" href="../static/styles/extras.1.1.0.min.css">
     <script type="text/javascript" src="../static/scripts/jquery.min.js"></script>
     <script type="text/javascript" src="../static/scripts/ichart.1.2.1.min.js"></script>
-    <script type="text/javascript">  
+      <script type="text/javascript">
       var alllabels=[]
       var allvalues=[]
       var allvalues1=[]
+      var allmax=[]
       var difficulty=[]
       var blockGasLimit=[]
       var num=0;
@@ -25,7 +26,7 @@
       $.getJSON( "../static/json/report.json", function( data ) {
     	m=data['blockGasLimit'].length;
     	n=data['difficulty'].length;
-    	num=data['nodeCount'];
+    	num=m*n;
     	for(var i=0;i<n;i++){
     		difficulty.push(data['difficulty'][i])
     	}
@@ -37,25 +38,27 @@
     		var labels=[]
     		var values=[]
     		var values1=[]
-    		// alert(txCompeltion.length);
-    		for(var j = 0; j < txCompeltion.length; j++) {
-    			if((j+1)%11==0){
-    				labels.push(txCompeltion[j][0]);
-    			}
-    			}
-    		for(var i=0;i<11;i++){
-    			values.push(txCompeltion[i][1]);
-    		}
-    		for(var i=0;i<txCompeltion.length/11;i++){
-    			var v1=[];
-    			for(var j=0;j<11;j++){
-    				v1.push(txCompeltion[i*11+j][2]);
-    			}
-    			values1.push(v1);
-    		}
+            var maxvalue=[]
+            for(var i=0;i<txCompeltion.length;i++){
+               labels.push(txCompeltion[i][0][0])
+
+            }
+            for(var j=0;j<11;j++){
+                values.push(txCompeltion[0][j][1])
+
+            }
+            for (var i=0;i<txCompeltion.length;i++){
+                var v1=[]
+                for (var j=0;j<11;j++){
+                    v1.push(txCompeltion[i][j][2]);
+                }
+                values1.push(v1);
+                 maxvalue.push(Math.max(v1))
+            }
     		alllabels.push(labels);
     		allvalues.push(values);
-    		allvalues1.push(values1)
+    		allvalues1.push(values1);
+    		allmax.push(maxvalue);
     	}
     });
     $(function(){
@@ -72,61 +75,23 @@
     		$("#sec"+i+"").append("<td>"+blockGasLimit[i]+"</td>");
     		for(var j=0;j<n;j++){
     			$("#sec"+i+"").append("<td><div id='canvasDiv"+(i*n+j)+"'style='display:inline; overflow-x:scroll; width:400px; height:400px;'></div></td>");
-    				var data = [
-    				         	{
-    				         		name : 'Frequence1',
-    				         		value:allvalues1[i*n+j][0],
-    				         		color:'#4572a7',
+    			var colors=['#4572a7','#aad0db','#89a54e','#80699b','#92a8cd','#db843d','#aad0db','#fad0db']
+    			var data=[]
+    			for(var x=0;x<alllabels[i*n+j].length;x++){
+    			    var jsonsstr={
+    				         		name : 'Frequence'+alllabels[i*n+j][x],
+    				         		value:allvalues1[i*n+j][x],
+    				         		color:colors[x%8],
     				         		line_width:2
-    				         	},
-    							{
-    								name : 'Frequence2',
-    								value:allvalues1[i*n+j][1],
-    								color:'#aa4643',
-    								line_width:2
-    							},
-    							{
-    								name : 'Frequence3',
-    								value:allvalues1[i*n+j][2],
-    								color:'#89a54e',
-    								line_width:2
-    							},
-    							{
-    								name : 'Frequence4',
-    								value:allvalues1[i*n+j][3],
-    								color:'#80699b',
-    								line_width:2
-    							},
-    							{
-    								name : 'Frequence5',
-    								value:allvalues1[i*n+j][4],
-    								color:'#92a8cd',
-    								line_width:2
-    							},
-    							{
-    								name : 'Frequence6',
-    								value:allvalues1[i*n+j][5],
-    								color:'#db843d',
-    								line_width:2
-    							},
-    							{
-    								name : 'Frequence7',
-    								value:allvalues1[i*n+j][6],
-    								color:'#aad0db',
-    								line_width:2
-    							},
-                                {
-                                    name : 'Frequence8',
-                                    value:allvalues1[i*n+j][7],
-                                    color:'#fad0db',
-                                    line_width:2
-                                }
-    				         ];
-    				
+    				         	}
+                    data.push(jsonsstr);
+                }
+
+
     				var chart = new iChart.LineBasic2D({
     					render : 'canvasDiv'+(i*n+j),
     					data: data,
-    					width : 400,
+    					width : 500,
     					height : 400,
     					background_color:'#FEFEFE',
     					tip:{
@@ -155,23 +120,23 @@
     						point_size:5
     					},
     					coordinate:{
-    						width:240,
+    						width:340,
     						height:240,
     						axis:{
     							color:'#dcdcdc',
     							width:1
     						},
     						scale:[{
-    							 position:'left',	
+    							 position:'left',
     							 start_scale:0,
-    							 end_scale:1,
-    							 scale_space:0.1,
+    							 end_scale:Math.max(allmax[i*n+j]),
+    							 scale_space:Math.max(allmax[i*n+j])/10,
     							 scale_size:2,
     							 scale_color:'#9f9f9f'
     						},
-    						
+
     						{
-    							 position:'bottom',	
+    							 position:'bottom',
     							 labels:allvalues[i*n+j]
     						}],
     					}
@@ -191,15 +156,15 @@
     						.textFont('600 11px Times New Roman')
     						.fillText('Tx completion',x-40,y-12,false,'#9d987a')
     						.textBaseline('top')
-    						.fillText('GasPrice',x+w+12,y+h+10,false,'#9d987a');
-    						
+    						.fillText('GasPrice',x+w+22,y+h+10,false,'#9d987a');
+
     					}
     			}));
     			//开始画图
     			chart.draw();}}
     		});
-    		
-    </script>  
+
+    </script>
   </head>
   <body class="h-100">
 

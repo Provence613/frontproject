@@ -1,1 +1,1 @@
-{"difficulty": ["0xffff", "0xfffd"], "gaslimit": ["21000", "23000"], "nodeCount": 4, "startUpType": "docker", "clientType": "client"}
+{"difficulty": ["0xfffff", "0xffffe"], "gaslimit": ["21000", "23000"], "nodeCount": 4, "startUpType": "docker", "clientType": "client"}
