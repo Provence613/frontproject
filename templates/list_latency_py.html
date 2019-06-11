@@ -13,131 +13,201 @@
     <link rel="stylesheet" href="../static/styles/extras.1.1.0.min.css">
     <script type="text/javascript" src="../static/scripts/jquery.min.js"></script>
     <script type="text/javascript" src="../static/scripts/ichart.1.2.1.min.js"></script>
-   <script type="text/javascript">
-      var alllabels=[]
-      var allvalues=[]
-      var difficulty=[]
-      var blockGasLimit=[]
-      var num=0;
-      var m=0;
-      var n=0;
-      $.getJSON( "../static/json/report.json", function( data ) {
-    	m=data['blockGasLimit'].length;
-    	n=data['difficulty'].length;
-    	num=n*m;
-    	for(var i=0;i<n;i++){
-    		difficulty.push(data['difficulty'][i])
-    	}
-    	for(var i=0;i<m;i++){
-    		blockGasLimit.push(data['blockGasLimit'][i])
-    	}
-    	for(var i = 0; i < num; i++){
-    		throughput=data['result'][i].generalLatency;
-    		var labels=[]
-    		var values=[]
-    		for(var j = 0; j < throughput.length; j++) {
-    			labels.push(throughput[j][0]+'tps')
-    			values.push(throughput[j][1])
-    		}
-    		alllabels.push(labels);
-    		allvalues.push(values);
-    	}
-    });
+    <script type="text/javascript">
+      var existsArr={{ existsArr|safe }}
+      count=existsArr.length;
+      var difficulty={{ difficulty|safe }}
+      var blockGasLimit={{ gaslimit|safe }}
+      var alllabels={{ labelAll|safe }}
+      var allvalues={{ valueAll|safe }}
+      var timeAll={{ timestampAll|safe }}
+       n=difficulty.length;
+       m=blockGasLimit.length;
+       num=n*m;
+       var imgurls=[];
     $(function(){
-    	$("table").append("<tr id='head'></tr>");
-    	$('#head').append("<td></td>");
-    	$('#head').append("<td colspan="+n+">Difficulty</td>");
-    	$("table").append("<tr id='sec'></tr>");
-    	$('#sec').append("<td>Block GasLimit</td>");
-    	for(var i=0;i<n;i++){
-    		$('#sec').append("<td>"+difficulty[i]+"</td>");
-    	}
-        for(var i=0;i<m;i++){
-    		$("table").append("<tr id='sec"+i+"'></tr>");
-    		$("#sec"+i+"").append("<td>"+blockGasLimit[i]+"</td>");
-    		for(var j=0;j<n;j++){
-    			$("#sec"+i+"").append("<td><div id='canvasDiv"+(i*n+j)+"'style='display:inline;'></div></td>");
-    				var data = [
-    				         	{
-    				         		name : 'Frequence',
-    				         		value:allvalues[i*n+j],
-    				         		color:'#aad0db',
-    				         		line_width:2
-    				         	}
-    				         ];
+        {#alert(Math.floor(2/n));#}
+        $("#info").append("<tr id='headinfo'></tr>");
+        $('#headinfo').append("<th>Index</th><th>Difficulty</th><th>GasLimit</th><th>State</th><th>Time</th>");
+        for(var i=0;i<count;i++){
+            $("#info").append("<tr id='infotr" + i + "'></tr>");
+            $("#infotr" + i + "").append("<td >"+(i+1)+"</td>");
+            $("#infotr" + i + "").append("<td >"+difficulty[i%n]+"</td>");
+            $("#infotr" + i + "").append("<td >"+blockGasLimit[Math.floor(i/n)]+"</td>");
+            if (existsArr[i]=="T" ){
+                $("#infotr" + i + "").append("<td ><button  class='btn btn-accent' style='width:100px;background:#228b22'>Tested</button></td>");
+            }
+            else if(existsArr[i-1]=="T" && existsArr[i]=="F" ){
+                $("#infotr" + i + "").append("<td ><button  class='btn btn-accent' style='width:100px;'>Testing</button></td>");
+            }
+            else{
+                $("#infotr" + i + "").append("<td ><button  class='btn btn-accent' style='width:100px;background:#e3071d'>Untest</button></td>");
+            }
+            $("#infotr" + i + "").append("<td >"+timeAll[i]+"</td>");
+        }
 
-    				var chart = new iChart.LineBasic2D({
-    					render : 'canvasDiv'+(i*n+j),
-    					data: data,
-    					width : 500,
-    					height : 400,
-    					background_color:'#FEFEFE',
-    					tip:{
-    						enable:true,
-    						shadow:true,
-    						move_duration:400,
-    						border:{
-    							 enable:true,
-    							 radius : 5,
-    							 width:2,
-    							 color:'#3f8695'
-    						},
-    						listeners:{
-    							 //tip:提示框对象、name:数据名称、value:数据值、text:当前文本、i:数据点的索引
-    							parseText:function(tip,name,value,text,i){
-    								return "Latency:"+value;
-    							}
-    						}
-    					},
-    					crosshair:{
-    						enable:true,
-    						line_color:'#62bce9'//十字线的颜色
-    					},
-    					sub_option : {
-    						label:false,
-    						point_size:10
-    					},
-    					coordinate:{
-    						width:340,
-    						height:240,
-    						axis:{
-    							color:'#dcdcdc',
-    							width:1
-    						},
-    						scale:[{
-    							 position:'left',
-    							 start_scale:0,
-    							 end_scale:Math.max(allvalues[i*n+j]),
-    							 scale_space:Math.max(allvalues[i*n+j])/10,
-    							 scale_size:2,
-    							 scale_color:'#9f9f9f'
-    						},{
-    							 position:'bottom',
-    							 labels:alllabels[i*n+j]
-    						}]
-    					}
-    				});
-    			//利用自定义组件构造左侧说明文本
-    			chart.plugin(new iChart.Custom({
-    					drawFn:function(){
-    						//计算位置
-    						var coo = chart.getCoordinate(),
-    							x = coo.get('originx'),
-    							y = coo.get('originy'),
-    							w = coo.width,
-    							h = coo.height;
-    						//在左上侧的位置，渲染一个单位的文字
-    						chart.target.textAlign('start')
-    						.textBaseline('bottom')
-    						.textFont('600 11px Times New Roman')
-    						.fillText('Latency',x-40,y-12,false,'#9d987a')
-    						.textBaseline('top')
-    						.fillText('Frequency',x+w+22,y+h+10,false,'#9d987a');
+        for(var i=0;i<m;i++) {
+            $("#pic").append("<tr id='sec" + i + "'></tr>");
+            {#$("#sec" + i + "").append("<td>" + blockGasLimit[i] + "</td>");#}
+            for (var j = 0; j < n; j++) {
+                if (existsArr[i * n + j] == "T") {
+                    $("#sec" + i + "").append("<td><div id='canvasDiv" + (i * n + j) + "'style='display:inline;'></div></td>");
+                    var data = [
+                        {
+                            name: 'Frequence',
+                            value: allvalues[i * n + j],
+                            color: '#aad0db',
+                            line_width: 2
+                        }
+                    ];
 
-    					}
-    			}));
-    			//开始画图
-    			chart.draw();}}
+                    var chart = new iChart.LineBasic2D({
+                        render: 'canvasDiv' + (i * n + j),
+                        data: data,
+                        width: 500,
+                        height: 400,
+                        title : {
+				        text:'Latency with Different Frequencies when Difficulty='+difficulty[j]+', GasLimit='+blockGasLimit[i]+'',
+				        fontsize:12,
+				        color:'#000000'
+			            },
+			        subtitle : {
+                            fontsize:10,
+				        text:'x-coordinate: frequency|y-coordinate: latency',
+				        color:'#333333'
+			        },
+                        background_color: '#FEFEFE',
+                        tip: {
+                            enable: true,
+                            shadow: true,
+                            move_duration: 400,
+                            border: {
+                                enable: true,
+                                radius: 5,
+                                width: 2,
+                                color: '#3f8695'
+                            },
+                            listeners: {
+                                //tip:提示框对象、name:数据名称、value:数据值、text:当前文本、i:数据点的索引
+                                parseText: function (tip, name, value, text, i) {
+                                    return "Latency:" + value;
+                                }
+                            }
+                        },
+                        crosshair: {
+                            enable: true,
+                            line_color: '#62bce9'//十字线的颜色
+                        },
+                        sub_option: {
+                            label: false,
+                            point_size: 10
+                        },
+                        coordinate: {
+                            width: 240,
+                            height: 240,
+                            axis: {
+                                color: '#dcdcdc',
+                                width: 1
+                            },
+                            scale: [{
+                                position: 'left',
+                                start_scale: 0,
+                                end_scale: 300,
+                                scale_space: 30,
+                                scale_size: 2,
+                                scale_color: '#9f9f9f'
+                            }, {
+                                position: 'bottom',
+                                labels: alllabels[i * n + j]
+                            }]
+                        }
+
+                    });
+
+                    //开始画图
+                    chart.draw();
+                    imgurls.push(chart.toDataURL()) ;
+                }
+                else{
+                    {#$("#sec" + i + "").append("<td><div style=' top: 0; bottom: 0; left: 0; right: 0;'>to be tested</div></td>");#}
+                    {#$("#sec" + i + "").append("<td><div style=' top: 0; bottom: 0; left: 0; right: 0;'>to be tested</div></td>");#}
+                    $("#sec" + i + "").append("<td><div id='canvasDiv" + (i * n + j) + "'style='display:inline;'></div></td>");
+                    var data = [
+                        {
+                            name: 'Frequence',
+                            value: [0,0,0,0],
+                            color: '#dcdcdc',
+                            line_width: 2
+                        }
+                    ];
+
+                    var chart = new iChart.LineBasic2D({
+                        render: 'canvasDiv' + (i * n + j),
+                        data: data,
+                        width: 500,
+                        height: 400,
+                        background_color: '#dcdddf',
+                        title : {
+				        text:'Latency with Different Frequencies when Difficulty='+difficulty[j]+', GasLimit='+blockGasLimit[i]+'',
+				        fontsize:12,
+				        color:'#000000'
+			            },
+			        subtitle : {
+                            fontsize:10,
+				        text:'x-coordinate: frequency|y-coordinate: latency',
+				        color:'#333333'
+			        },
+                        crosshair: {
+                            enable: true,
+                            line_color: '#dcdcdc'//十字线的颜色
+                        },
+                        sub_option: {
+                            label: false,
+                            point_size: 10
+                        },
+                        coordinate: {
+                            width: 240,
+                            height: 240,
+                            axis: {
+                                color: '#dcdcdc',
+                                width: 1
+                            },
+                            scale: [{
+                                position: 'left',
+                                start_scale: 0,
+                                end_scale: 300,
+                                scale_space: 30,
+                                scale_size: 2,
+                                scale_color: '#9f9f9f'
+                            }, {
+                                position: 'bottom',
+                                labels: ['1tps','2tps','4tps','8tps']
+                            }]
+                        }
+
+                    });
+                    //利用自定义组件构造左侧说明文本
+                    //开始画图
+                    chart.draw();
+                }
+            }
+        }
+        $("a[name='download']").click(function (e) {
+            {#alert(imgurls.length)#}
+            $.ajax({
+                url: "/download/",
+                type: "POST",
+                data: {
+                    'urls':JSON.stringify(imgurls),
+                    'name':"generalLatency"
+                                },
+                traditional:true,
+                success: function (data) {
+                    window.location.href = "/load";
+                                    }
+
+                            })
+        });
     		});
 
     </script>
@@ -205,17 +275,17 @@
                   <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search"> </div>
               </form>
               <ul class="navbar-nav border-left flex-row " style="float: right">
-                <li class="nav-item border-right dropdown notifications">
-                  <a class="nav-link text-nowrap px-3" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                      <img class="user-avatar  mr-2" src="../static/images/avatars/file.png" alt="User Avatar">
-                      <span class="d-none d-md-inline-block">File</span>
-                    </a>
-                  </li>
-                </li>
+{#                  <li class="nav-item border-right dropdown notifications">#}
+{#                  <a name="download" class="nav-link text-nowrap px-3" href="#" role="button" aria-haspopup="true" aria-expanded="false">#}
+{#                      <img class="user-avatar  mr-2" src="../static/images/avatars/download.png" alt="User Avatar">#}
+{#                      <span class="d-none d-md-inline-block">Download</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                </li>#}
                 <li class="nav-item ">
                   <a class="nav-link text-nowrap px-3" href="/experiment" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar  mr-2" src="../static/images/avatars/experiment.png" alt="User Avatar">
-                    <span class="d-none d-md-inline-block">Experiment</span>
+                    <span class="d-none d-md-inline-block">Configuration</span>
                   </a>
                 </li>
               </ul>
@@ -227,14 +297,29 @@
             <div class="page-header row no-gutters py-4 mb-3 ">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <!--<span class="text-uppercase page-subtitle">Overview</span>-->
-                <h3 class="page-title">Experiment</h3>
+                <h3 class="page-title">Testing Results</h3>
               </div>
             </div>
             <!-- End Page Header -->
-			  <div class="col-lg-12" style="text-align: center;">
-					<table class="table mb-0">
+            <div class="row">
+                  <div class="col-lg-12" style="text-align: justify; ">
+					<table id="info" class="table mb-0" >
+
                     </table>
               </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-12" style="text-align: center;">
+					<table id="pic" class="table mb-0">
+                    </table>
+              </div>
+              </div>
+{#              <div class="col-lg-12">#}
+{#                  <a href="javascript: void(0);" title="download chart" target="_blank" download="chart.png" id="download_a">#}
+{#                      <button type='button' id='download' class='btn btn-accent'>Download</button>#}
+{#                  </a>#}
+{#            </div>#}
+
             </div>
             <!-- End Default Light Table -->
           </div>

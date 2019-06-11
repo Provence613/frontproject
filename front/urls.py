@@ -25,4 +25,7 @@ urlpatterns = [
     path('latency/',views.latency),
     path('detailedLatency/',views.detailedLatency),
     path('txCompletion/',views.txCompletion),
+    path('testConfig/',views.testConfig),
+    path('download/',views.download),
+    path('load/',views.load),
 ]

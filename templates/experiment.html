@@ -17,6 +17,7 @@
 		<script type="text/javascript">
 				$(document).ready(function(){
 					$("form").submit(function(e){
+					    alert("123")
 						var Difficulty=$('#Difficulty').val();
 						Difficulty=Difficulty.split(" ");
 						var start_type=$('#start_type').val();
@@ -34,6 +35,9 @@
 						var blob = new Blob([JSON.stringify(data)], { type: "" });
 						saveAs(blob, "config.json");
 					});
+					$("#nextbtn").click(function(){
+                alert("你点击了按钮哦！");
+            })
 				});
 		</script>
   </head>
@@ -115,7 +119,8 @@
               </div>
             </div>
             <!-- End Page Header -->
-			  <div class="col-lg-12">
+              <div class="row">
+			  <div class="col-lg-6">
                 <div class="card card-small mb-4">
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item p-3">
@@ -154,7 +159,7 @@
                               <input type="number" name="node_count" class="form-control" id="node_count" placeholder="Node Count" required="required">
 														</div>
 														</div>
-                            <button type="submit" class="btn btn-accent">Start</button>
+                            <button type="submit" class="btn btn-accent">Preview</button>
                           </form>
                         </div>
                       </div>
@@ -162,7 +167,31 @@
                   </ul>
                 </div>
               </div>
+              <div class="col-lg-6">
+                  <div class="card card-small mb-4">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item p-3">
+                      <div class="row">
+                        <div class="col">
+                            <table class="table mb-0 ">
+                                <tr><th>Index</th><th>Config</th></tr>
+                                <tr><td>1</td><td>Difficulty:0,GasLimit:4712388</td></tr>
+                                <tr><td>2</td><td>Difficulty:0,GasLimit:2356198</td></tr>
+                                <tr><td>3</td><td>Difficulty:255,GasLimit:4712388</td></tr>
+                                <tr><td>4</td><td>Difficulty:255,GasLimit:2356198</td></tr>
+                                <tr><td>5</td><td>Difficulty:1023,GasLimit:4712388</td></tr>
+                                <tr><td>6</td><td>Difficulty:1023,GasLimit:2356198</td></tr>
+                            </table>
+                            <button id="nextbtn" type="submit" class="btn btn-accent">Next</button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  </div>
+
+
             </div>
+              </div>
             <!-- End Default Light Table -->
           </div>
                        

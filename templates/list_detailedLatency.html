@@ -23,6 +23,13 @@
 		  var num=0;
 		  var m=0;
 		  var n=0;
+		  var n1=0;
+
+		  $.getJSON( "../static/json/config.json", function( data ) {
+			n1=data['difficulty'].length;
+
+
+		});
 
 		  $.getJSON( "../static/json/report.json", function( data ) {
 			m=data['blockGasLimit'].length;

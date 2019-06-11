@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Experiment</title>
+    <title>Ethereum Configuration</title>
     <meta name="description" content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -16,24 +16,66 @@
 		<script src="../static/scripts/FileSaver.js"></script>
 		<script type="text/javascript">
 				$(document).ready(function(){
-					$("form").submit(function(e){
-						var Difficulty=$('#Difficulty').val();
-						Difficulty=Difficulty.split(" ");
+				    $("#previewbtn").click(function () {
 						var start_type=$('#start_type').val();
-						var node_count=$('#node_count').val();
-						var gaslimit=$('#gaslimit').val();
-						gaslimit=gaslimit.split(" ");
+						var node_count=parseInt($('#node_count').val());
 						var client_type=$('#client_type').val();
-						var data = {
-						    "difficulty": Difficulty,
-						    "gasLimit": gaslimit,
-								"nodeCount": node_count,
-								"startUpType": start_type,
-								"clientType": client_type
-						};
-						var blob = new Blob([JSON.stringify(data)], { type: "" });
-						saveAs(blob, "config.json");
-					});
+						var miner_count=parseInt($('#miner_count').val());
+						if (miner_count*2>node_count){
+						    alert("minerCount cannot exceed 1/2 of nodeCount");
+                        }
+                        else {
+                            $.ajax({
+                                url: "/deal/",
+                                type: "POST",
+                                data: {
+                                    'Difficulty1': $('#Difficulty1').val(),
+                                    'Difficulty2': $('#Difficulty2').val(),
+                                    'Difficulty3': $('#Difficulty3').val(),
+                                    'gaslimit1': $('#gaslimit1').val(),
+                                    'gaslimit2': $('#gaslimit2').val(),
+                                    'gaslimit3': $('#gaslimit3').val(),
+                                    'start_type': $('#start_type').val(),
+                                    'node_count': $('#node_count').val(),
+                                    'client_type': $('#client_type').val(),
+                                    'miner_count': $('#miner_count').val()
+                                },
+                                success: function (data) {
+                                    var dataObj = JSON.parse(data);
+                                    difficulty = dataObj['difficulty'];
+                                    gaslimit = dataObj['gaslimit'];
+                                    n=difficulty.length;
+                                    m=gaslimit.length;
+                                    num=n*m;
+                                    if(difficulty.length!=0 && gaslimit.length!=0) {
+                                        $("table").append("<tr id='head'></tr>");
+                                        $('#head').append("<th>Index</th>");
+                                        $('#head').append("<th >Difficulty</th>");
+                                        $('#head').append("<th >GasLimit</th>");
+                                        for (var i = 0; i < num; i++) {
+                                            $("table").append("<tr id='infotr" + i + "'></tr>");
+                                            $("#infotr" + i + "").append("<td>" + (i+1) + "</td>");
+                                            $("#infotr" + i + "").append("<td>" + difficulty[i % n] +  "</td>");
+                                            $("#infotr"+i+"").append("<td> "+ gaslimit[Math.floor(i / n)] +"</td>");
+                                        }
+                                        $("#tbl").addClass("card");
+                                        $("#tbl").addClass("card-small ");
+                                        $("#tbl").addClass("mb4")
+                                        {#$("#tbl").append("<button type='button' id='nextbtn' class='btn btn-accent'>Next</button>");#}
+                                        $("#nextbtn").click(function(){
+                                            window.location.href = "/testConfig";
+                                         });
+
+                                    }
+                                }
+                            })
+                        }
+
+
+            });
+				    {#difficulty={{ difficulty|safe }};#}
+                    {#gaslimit={{ gaslimit|safe }};#}
+
 				});
 		</script>
   </head>
@@ -58,18 +100,18 @@
           </div>
           <div class="nav-wrapper">
             <ul class="nav flex-column">
-							<li class="nav-item">
-							  <a class="nav-link " href="#">
-							    <i class="material-icons">note_add</i>
-							    <span>File</span>
-							  </a>
-							</li>
-              <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link " href="/experiment">
                   <i class="material-icons">table_chart</i>
-                  <span>Experiment</span>
+                  <span>Ethereum Configuration</span>
                 </a>
-              </li> 
+              </li>
+                <li class="nav-item">
+							  <a class="nav-link " href="/testConfig">
+							    <i class="material-icons">note_add</i>
+							    <span>Test Configuration</span>
+							  </a>
+                </li>
             </ul>
           </div>
         </aside>
@@ -110,51 +152,88 @@
             <div class="page-header row no-gutters py-4 mb-3 border-bottom">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <!--<span class="text-uppercase page-subtitle">Overview</span>-->
-                <h3 class="page-title">Experiment</h3>
+                <h3 class="page-title">Configuration</h3>
                 <!--(Tips:If you enter multiple values, please separate them with spaces.)-->
               </div>
             </div>
             <!-- End Page Header -->
-			  <div class="col-lg-12">
+              <div class="row">
+			  <div class="col-lg-6" style="height: 500px">
                 <div class="card card-small mb-4">
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item p-3">
                       <div class="row">
                         <div class="col">
-                          <form name="input" action="/deal/" method="post">
+                          <form name="input" action="" method="post">
+                              <div class="form-row">
+                                  <span><b>&nbsp;&nbsp;Difficulty</b></span>
+                              </div>
                             <div class="form-row">
-                              <div class="form-group col-md-6">
-                                <label for="Difficulty">Difficulty</label>
-                                <input type="text" class="form-control" name="Difficulty" id="Difficulty" placeholder="Difficulty" required="required"> </div>
-                              <div class="form-group col-md-6">
-                                <label for="start_type">Start Type</label>
-																<select name="start_type" id="start_type"  class="form-control">
-																  <option value="docker">docker</option>
-																  <option value="1">1</option>
-																	<option value="2">2</option>
-																</select>
-                                </div>
+                              <div class="form-group col-md-4">
+                                <input type="text" class="form-control" name="Difficulty1" id="Difficulty1" placeholder="Difficulty" required="required">
+                              </div>
+                               <div class="form-group col-md-4">
+                                <input type="text" class="form-control" name="Difficulty2" id="Difficulty2" placeholder="Difficulty">
+                              </div>
+                                <div class="form-group col-md-4">
+                                  <input type="text" class="form-control" name="Difficulty3" id="Difficulty3" placeholder="Difficulty" >
+                              </div>
                             </div>
+                              <div class="form-row">
+                                  <span><b>&nbsp;&nbsp;GasLimit</b></span>
+                              </div>
                             <div class="form-row">
-                              <div class="form-group col-md-6">
-                                <label for="gaslimit">GasLimit</label>
-                                <input type="text" name="gaslimit" class="form-control" id="gaslimit" placeholder="GasLimit" required="required" > </div>
-                              <div class="form-group col-md-6">
-                                <label for="client_type">Client Type</label>
+                              <div class="form-group col-md-4">
+                                <input type="text" name="gaslimit1" class="form-control" id="gaslimit1" placeholder="GasLimit" required="required" >
+                              </div>
+                                <div class="form-group col-md-4">
+                                <input type="text" name="gaslimit2" class="form-control" id="gaslimit2" placeholder="GasLimit"  >
+                              </div>
+                                <div class="form-group col-md-4">
+                                  <input type="text" name="gaslimit3" class="form-control" id="gaslimit3" placeholder="GasLimit"  >
+                              </div>
+                            </div>
+                              <div class="form-row">
+                                  <span><b>&nbsp;&nbsp;Start Type</b></span>
+                              </div>
+                              <div class="form-row">
+                                  <div class="form-group col-md-12">
+										<select name="start_type" id="start_type"  class="form-control">
+                                            <option value="docker">docker</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                  <span><b>&nbsp;&nbsp;Node Count</b></span>
+                              </div>
+                              <div class="form-row">
+                                  <div class="form-group col-md-12">
+										<input type="number" name="node_count" class="form-control" id="node_count" placeholder="Node Count" required="required">
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                  <span><b>&nbsp;&nbsp;Miner Count</b></span>
+                              </div>
+                              <div class="form-row">
+                                  <div class="form-group col-md-12">
+										<input type="number" name="miner_count" class="form-control" id="miner_count" placeholder="Miner Count" required="required">
+                                </div>
+                              </div>
+                              <div class="form-row"><span><b>&nbsp;&nbsp;Client Type</b></span></div>
+                              <div class="form-row">
+                                  <div class="form-group col-md-12">
                               	<select id="client_type" name="client_type" class="form-control" >
                               	  <option value="client">client</option>
-                              	  <option value="1">1</option>
-																	<option value="2">2</option>
+                              	  <option value="Geth">Geth</option>
+                                   <option value="2">2</option>
                               	</select>
                                 </div>
-                            </div>
-														<div class="form-row">
-                            <div class="form-group col-md-6">
-                              <label for="node_count">Node Count</label>
-                              <input type="number" name="node_count" class="form-control" id="node_count" placeholder="Node Count" required="required">
-														</div>
-														</div>
-                            <button type="submit" class="btn btn-accent">Start</button>
+
+                              </div>
+                            <button type="button" id="previewbtn" class="btn btn-accent" style="width: 100px;">Preview</button>
+                              <button type='button' id='nextbtn' class='btn btn-accent' style="width: 100px;float: right">Next</button>
                           </form>
                         </div>
                       </div>
@@ -162,7 +241,15 @@
                   </ul>
                 </div>
               </div>
-            </div>
+                  <div id="tbl" class="col-lg-6" style="text-align: justify;height: 505px;">
+                      <table class="table mb-0" >
+
+                    </table>
+{#                      <button type='submit' class='btn btn-accent'>Next</button>#}
+                  </div>
+
+              </div>
+              <br>
             <!-- End Default Light Table -->
           </div>
                        
