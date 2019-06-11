@@ -36,13 +36,13 @@
             $("#infotr" + i + "").append("<td >"+difficulty[i%n]+"</td>");
             $("#infotr" + i + "").append("<td >"+blockGasLimit[Math.floor(i/n)]+"</td>");
             if (existsArr[i]=="T" ){
-                $("#infotr" + i + "").append("<td ><button  class='btn btn-accent' style='width:100px;background:#228b22'>Tested</button></td>");
+                $("#infotr" + i + "").append("<td ><button  class='btn btn-accent' style='width:100px;background:#228b22;border-color:#228b22;'>Tested</button></td>");
             }
             else if(existsArr[i-1]=="T" && existsArr[i]=="F" ){
                 $("#infotr" + i + "").append("<td ><button  class='btn btn-accent' style='width:100px;'>Testing</button></td>");
             }
             else{
-                $("#infotr" + i + "").append("<td ><button  class='btn btn-accent' style='width:100px;background:#e3071d'>Untest</button></td>");
+                $("#infotr" + i + "").append("<td ><button  class='btn btn-accent' style='width:100px;background:#e3071d;border-color:#e3071d;'>Untest</button></td>");
             }
             $("#infotr" + i + "").append("<td >"+timeAll[i]+"</td>");
         }
@@ -295,13 +295,13 @@
                   <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search"> </div>
               </form>
               <ul class="navbar-nav border-left flex-row " style="float: right">
-{#                  <li class="nav-item border-right dropdown notifications">#}
-{#                  <a name="download" class="nav-link text-nowrap px-3" href="#" role="button" aria-haspopup="true" aria-expanded="false">#}
-{#                      <img class="user-avatar  mr-2" src="../static/images/avatars/download.png" alt="User Avatar">#}
-{#                      <span class="d-none d-md-inline-block">Download</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                </li>#}
+                  <li class="nav-item border-right dropdown notifications">
+                  <a name="download" class="nav-link text-nowrap px-3" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      <img class="user-avatar  mr-2" src="../static/images/avatars/download.png" alt="User Avatar">
+                      <span class="d-none d-md-inline-block">Download</span>
+                    </a>
+                  </li>
+                </li>
                 <li class="nav-item ">
                   <a class="nav-link text-nowrap px-3" href="/experiment" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar  mr-2" src="../static/images/avatars/experiment.png" alt="User Avatar">
