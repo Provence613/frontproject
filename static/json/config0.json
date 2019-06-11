@@ -1,0 +1,1 @@
+{"difficulty": ["0x123456", "0xfffff"], "gasLimit": ["21000", "213456", "12345"], "nodeCount": 2, "startUpType": "docker", "clientType": "client", "minerCount": 1}
