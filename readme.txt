@@ -1,6 +1,4 @@
- experiment.html½«Êý¾Ý±£´æÖÁjsonÎÄ¼þ 
-list¿ªÍ·µÄhtmlÊÇ¶ÁÈ¡report.json²¢ÒÔÍ¼±íÏÔÊ¾ note:txCompeltionºÍdetailedLatencyÒÑÄ¬ÈÏ8*11 
-·½·¨1£ºÖ±½ÓÔËÐÐexperiment.html£¬config.json»áÏÂÔØµ½ä¯ÀÀÆ÷Ä¬ÈÏµÄÄ¿Â¼ 
-·½·¨2£ºÔËÐÐDjangoÏîÄ¿ºó£¬ÔÚä¯ÀÀÆ÷ÊäÈëlocalhost:8000/experiment½øÈë£¬ µã»÷Ìá½»°´Å¥ºó£¬
-config.json»áÏÂÔØµ½ä¯ÀÀÆ÷Ä¬ÈÏµÄÄ¿Â¼ºÍ../static/jsonÄ¿Â¼ÏÂ£¬£¨Í¬Ê±¿ÉÒÔÓÃos¿âµ÷ÓÃcmdÃüÁîÐÐ(views.py)£©£¬
- ³ÌÐò»áÅÐ¶Ï../static/jsonÄ¿Â¼ÏÂÊÇ·ñ´æÔÚreport.json,´æÔÚºóÌ¨Ìø×ªµ½list_throughput.html£¬²»´æÔÚÔòÏÔÊ¾³ÌÐòÕýÔÚÔËÐÐ¡£
+experiment.htmlå°†æ•°æ®ä¿å­˜è‡³jsonæ–‡ä»¶ 
+è¿è¡ŒDjangoé¡¹ç›®åŽï¼Œåœ¨æµè§ˆå™¨è¾“å…¥localhost:8000/experimentè¿›å…¥ï¼Œ ç‚¹å‡»æäº¤æŒ‰é’®åŽï¼Œ
+config.jsonä¼šä¸‹è½½åˆ°../static/jsonç›®å½•ä¸‹ï¼Œï¼ˆåŒæ—¶å¯ä»¥ç”¨osåº“è°ƒç”¨cmdå‘½ä»¤è¡Œ(views.py)ï¼‰ï¼Œ
+æä¾›ä¸‹è½½åŽ‹ç¼©åŒ…åŠŸèƒ½
