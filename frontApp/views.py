@@ -10,6 +10,7 @@ import zipfile
 import os
 import zipstream
 import pandas as pd
+import time
 class ZipUtilities:
     zip_file = None
 
@@ -131,14 +132,18 @@ def throughput(request):
                 values.append(round(throughputArr[j][1],2))
             labelAll.append(labels)
             valueAll.append(values)
-            timestampAll.append(info['timestamp'])
+            timeStamp = info['timestamp']
+            timeArray = time.localtime(timeStamp)
+            otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+            timestampAll.append(otherStyleTime)
+
         else:
             exists.append("F")
             labels = []
             values = []
             labelAll.append(labels)
             valueAll.append(values)
-            timestampAll.append(0)
+            timestampAll.append('')
     # print(len(labelAll[1]))
     # print(valueAll)
     return render(request, 'list_throughput_py.html',{"existsArr":exists,"difficulty":difficulty,"gaslimit":gaslimit,"labelAll":labelAll,"valueAll":valueAll,"timestampAll":timestampAll})
@@ -167,14 +172,18 @@ def latency(request):
                 values.append(round(latencyArr[j][1],2))
             labelAll.append(labels)
             valueAll.append(values)
-            timestampAll.append(info['timestamp'])
+            # timestampAll.append(info['timestamp'])
+            timeStamp = info['timestamp']
+            timeArray = time.localtime(timeStamp)
+            otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+            timestampAll.append(otherStyleTime)
         else:
             exists.append("F")
             labels = []
             values = []
             labelAll.append(labels)
             valueAll.append(values)
-            timestampAll.append(0)
+            timestampAll.append('')
     # print(len(labelAll[1]))
     # print(valueAll)
     # print(timestampAll)
@@ -222,7 +231,11 @@ def detailedLatency(request):
             valueAll.append(values)
             throughputAll.append(throughput)
             maxAll.append(maxvalues)
-            timestampAll.append(info['timestamp'])
+            # timestampAll.append(info['timestamp'])
+            timeStamp = info['timestamp']
+            timeArray = time.localtime(timeStamp)
+            otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+            timestampAll.append(otherStyleTime)
         else:
             exists.append("F")
             labels = []
@@ -233,7 +246,7 @@ def detailedLatency(request):
             valueAll.append(values)
             throughputAll.append(throughput)
             maxAll.append(maxvalues)
-            timestampAll.append(0)
+            timestampAll.append('')
     # print(throughputAll)
     # print(valueAll)
     return render(request, 'list_detailedLatency_py.html',{"existsArr":exists,"difficulty":difficulty,"gaslimit":gaslimit,"labelAll":labelAll,"valueAll":valueAll,"throughputAll":throughputAll,"maxAll":maxAll,"timestampAll":timestampAll})
@@ -280,7 +293,11 @@ def txCompletion(request):
             valueAll.append(values)
             throughputAll.append(throughput)
             maxAll.append(maxvalues)
-            timestampAll.append(info['timestamp'])
+            # timestampAll.append(info['timestamp'])
+            timeStamp = info['timestamp']
+            timeArray = time.localtime(timeStamp)
+            otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+            timestampAll.append(otherStyleTime)
         else:
             exists.append("F")
             labels = []
@@ -291,7 +308,7 @@ def txCompletion(request):
             valueAll.append(values)
             throughputAll.append(throughput)
             maxAll.append(maxvalues)
-            timestampAll.append(0)
+            timestampAll.append('')
     # print(throughputAll)
     # print(valueAll)
     return render(request, 'list_txCompeltion_py.html',{"existsArr":exists,"difficulty":difficulty,"gaslimit":gaslimit,"labelAll":labelAll,"valueAll":valueAll,"throughputAll":throughputAll,"maxAll":maxAll,"timestampAll":timestampAll})
