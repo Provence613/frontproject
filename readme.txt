@@ -13,4 +13,6 @@ pip install pandas as pd
 pip install time
 
 How do I run this project?
-Run the django project and enter http://127.0.0.1:8000/experiment/ to enter the Ethereum configuration page.
+1.Enter the directory of this project and execute the following command to start the Django project.
+python manage.py runserver 127.0.0.1:8000
+2. Enter the URL http://127.0.0.1:8000/experiment/ in the browser to enter the Ethereum configuration page.
