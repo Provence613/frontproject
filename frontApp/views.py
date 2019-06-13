@@ -70,6 +70,16 @@ def testConfig(request):
             i = i + 1
             start = start * 2
         labelArr[-1]=str(labelArr[-1])+'times'
+        # os.chdir('..')
+        # result = subprocess.run(['which', 'node'],
+        #                         stdout=subprocess.PIPE,
+        #                         stderr=subprocess.PIPE)
+        # nodeCmd = result.stdout.decode("utf-8").replace('\n', '')
+        # pnode = subprocess.Popen(
+        #     [nodeCmd, 'src/main.js', '-p', 'gui/static/json/', '-c', 'gui/static/json/config.json'],
+        #     stdout=subprocess.PIPE,
+        #     stderr=subprocess.PIPE)
+        # os.chdir('gui')
     return render(request,'testConfig_py.html',{"labelArr":labelArr,"numArr":numArr})
 def throughput(request):
     with open("static/json/config.json", 'r') as load_f:

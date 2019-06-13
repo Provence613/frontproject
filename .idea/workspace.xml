@@ -4,43 +4,6 @@
     <list default="true" id="44841f68-f9eb-4fa7-ad52-5bcff55b5080" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontApp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/avatars/0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/avatars/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/avatars/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/avatars/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/10.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/11.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/12.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/13.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/14.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/15.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/16.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/5.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/6.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/7.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/8.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/content-management/9.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/shards-dashboards-logo-danger.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/shards-dashboards-logo-info.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/shards-dashboards-logo-secondary.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/shards-dashboards-logo-success.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/shards-dashboards-logo-warning.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/config0.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/json/config0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/report.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/report01.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/report02.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/report03.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/report_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/json/test.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/list_detailedLatency_py.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/list_detailedLatency_py.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/list_latency_py.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/list_latency_py.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/list_throughput_py.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/list_throughput_py.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/list_txCompeltion_py.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/list_txCompeltion_py.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +109,7 @@
     <session id="-536463272">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
@@ -158,7 +121,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="194" />
-          <entry key="py" value="50" />
+          <entry key="py" value="51" />
           <entry key="txt" value="44" />
         </counts>
       </usages-collector>
@@ -166,7 +129,7 @@
         <counts>
           <entry key="HTML" value="194" />
           <entry key="PLAIN_TEXT" value="44" />
-          <entry key="Python" value="50" />
+          <entry key="Python" value="51" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -203,11 +166,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontApp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-487">
-              <caret line="347" column="29" selection-start-line="347" selection-start-column="29" selection-end-line="347" selection-end-column="29" />
+            <state relative-caret-position="116">
+              <caret line="72" column="7" selection-start-line="72" selection-start-column="7" selection-end-line="81" selection-end-column="25" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1560392503238" expanded="true" signature="1270:1271" ph="..." />
+                <marker date="1560393449402" expanded="true" signature="1270:1271" ph="..." />
               </folding>
             </state>
           </provider>
@@ -482,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1560322737802</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="delete">
+      <created>1560392604947</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560392604948</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -498,12 +468,12 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18755053" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18755053" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.497979" weight="0.3285968" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49555376" visible="true" weight="0.3285968" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49555376" weight="0.3285968" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -757,11 +727,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontApp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-487">
-          <caret line="347" column="29" selection-start-line="347" selection-start-column="29" selection-end-line="347" selection-end-column="29" />
+        <state relative-caret-position="116">
+          <caret line="72" column="7" selection-start-line="72" selection-start-column="7" selection-end-line="81" selection-end-column="25" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1560392503238" expanded="true" signature="1270:1271" ph="..." />
+            <marker date="1560393449402" expanded="true" signature="1270:1271" ph="..." />
           </folding>
         </state>
       </provider>
